@@ -1,5 +1,14 @@
-async function tempo(request,response) {
-  const clientId = process.env.CLIENTID;
+import { useRouter } from 'next/router'
+
+const getParams = () => {
+  const router = useRouter()
+  const {id} = router.query
+
+  return({id})
+}
+
+async function trellotest(request,response) {
+/*   const clientId = process.env.CLIENTID;
   const clientSecret = process.env.CLIENTSECRET;
   const dynamicDate = new Date();
 
@@ -7,11 +16,11 @@ async function tempo(request,response) {
 
   const kudoersResponse = await fetch("https://viacep.com.br/ws/13300065/json/");
   const kudoersResponseJson = await kudoersResponse.json();
+ */
 
   response.json({
-    date: dynamicDate.toGMTString(),
-    kudoers: kudoersResponseJson,
+    card: getParams(),
   });
 }
 
-export default tempo;
+export default trellotest;

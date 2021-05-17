@@ -1,27 +1,17 @@
-import { useState, UseState } from 'react';
+//import { useState, UseState } from 'react';
+import React, { useEffect } from "react";
+import Router from 'next/router';
 
-function Home() {
+export default function Home() {
+  useEffect(() => {
+    const {pathname} = Router
+    if(pathname == '/' ){
+        Router.push('https://www.strava.com/oauth/authorize?client_id=61144&redirect_uri=http://localhost:3000/strava&response_type=code&scope=activity:read_all&approval_prompt=force')
+    }
+  });
   return (
     <div>
       <h1>Nova home</h1>
-      <Contador />
     </div>
   )
 }
-
-function Contador() {
-  const [contador,setContador] = useState(1);
-
-  function adicionarContador() {
-    setContador(contador + 1);
-  }
-
-  return (
-    <div>
-      <div>{contador}</div>
-      <button onClick={adicionarContador}>Adicionar</button>
-    </div>
-  )
-}
-
-export default Home
